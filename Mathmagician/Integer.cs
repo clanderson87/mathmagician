@@ -8,11 +8,11 @@ namespace Mathmagician
 {
     public class Integer
     {
-
         public int MAX { get; private set; } 
-
-        /*
+        protected int Step { get; set; }
+        protected int First { get; set; }
         
+            /*
             using properties is like 
             private int max = 50;
             public int GetMax()
@@ -27,21 +27,21 @@ namespace Mathmagician
 
             */
 
-
-
         public Integer()
         {
             MAX = 50;
+            Step = 1;
+            First = 0;
         }
 
-        public int GetFirst()
+        virtual public int GetFirst()
         {
-            return 0;
+            return First;
         }
 
-        public int GetNext(int current)
+        virtual public int GetNext(int current)
         {
-            return current + 1;
+            return current + Step;
         }
 
         public int[] GetSequence(int how_many)
@@ -62,14 +62,14 @@ namespace Mathmagician
 
             int counter = 0;
             seq_array[counter] = GetFirst();
-            while (counter < how_many -1);
+            while (counter < how_many -1)
             {
                 /*attempt 1
                 seq_array[counter+1] = GetNext(seq_array[counter]);
                 counter++;*/
 
                 counter++;
-                seq_array[counter] = GetNext(seq_array[counter - 1]);  
+                seq_array[counter] = GetNext(seq_array[counter -1]);  
             }
 
             return seq_array;
